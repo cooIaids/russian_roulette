@@ -9,8 +9,10 @@ public class Gun {
         rounds.add(b);
     }
 
-    public void spinCylinder(){
-        Collections.shuffle(rounds);
+    public ArrayList<Boolean> getAllRounds(){
+        ArrayList<Boolean> tempRounds = new ArrayList<>();
+        tempRounds.addAll(rounds);
+        return tempRounds;
     }
 
     public boolean getRound(int index){

@@ -34,18 +34,44 @@ public class Main {
         int oppHealth = 2;
         boolean currentRound = true;
         boolean nextRound = false;
-        Gun g = new Gun();
-        g.addRounds(true);
-        g.addRounds(false);
-        g.addRounds(false);
-        g.addRounds(false);
-        g.addRounds(false);
-        g.addRounds(false);
-        System.out.println(g.writeOutRounds());
-        g.spinCylinder();
-        System.out.println(g.writeOutRounds());
-        currentRound = g.getRound(0);
-        nextRound = g.getRound(1);
+        Revolver rev = new Revolver();
+        rev.addRounds(false);
+        rev.addRounds(false);
+        rev.addRounds(true);
+        rev.addRounds(false);
+        rev.addRounds(false);
+        rev.addRounds(false);
+        System.out.println(rev.writeOutRounds());
+        rev.spinCylinder();
+        System.out.println(rev.writeOutRounds());
+        currentRound = rev.getRound(0);
+        nextRound = rev.getRound(1);
+        System.out.println("Shoot YOURSELF or THE DEALER?");
+        System.out.println("Shooting yourself with a blank skips The Dealer's turn (max. 2 times)");
+        String playersChoice;
+        playersChoice = sc.next();
+        switch (playersChoice){
+            case "YOU":
+                if(currentRound == true){
+                    playersHealth -= 1;
+                    System.out.println("THE DEALER'S TURN");
+                } else if (currentRound == false) {
+                    playersChoice = sc.next();
+                    System.out.println("THE DEALER'S TURN");
+
+                }
+                System.out.println(playersHealth);
+                break;
+            case "DEALER":
+                if(currentRound == true){
+                    oppHealth -= 1;
+                    System.out.println("YOUR TURN");
+                } else if (currentRound == false) {
+                    System.out.println("THE DEALER'S TURN");
+                }
+
+
+        }
 
 
     }
