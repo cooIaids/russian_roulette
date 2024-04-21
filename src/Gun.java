@@ -3,20 +3,19 @@ import java.util.Collections;
 
 public class Gun {
 
-    private ArrayList<Boolean> rounds = new ArrayList<>();
+    private ArrayList<Bullet> rounds = new ArrayList<>();
 
-    public void addRounds(Boolean b){
+    public void addRounds(Bullet b){
         rounds.add(b);
     }
 
-    public ArrayList<Boolean> getAllRounds(){
-        ArrayList<Boolean> tempRounds = new ArrayList<>();
-        tempRounds.addAll(rounds);
+    public ArrayList<Bullet> getAllRounds(){
+        ArrayList<Bullet> tempRounds = new ArrayList<>(rounds);
         return tempRounds;
     }
 
     public boolean getRound(int index){
-        return rounds.get(index);
+        return rounds.get(index).isLiveOrBlank();
     }
 
     public String writeOutRounds(){
@@ -25,5 +24,9 @@ public class Gun {
             s.append(rounds.get(i)).append(", ");
         }
         return s.toString();
+    }
+
+    public void spinCylinder(){
+        Collections.shuffle(rounds);
     }
 }

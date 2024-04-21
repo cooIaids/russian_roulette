@@ -32,15 +32,16 @@ public class Main {
         System.out.println("Imagine interesting lore here");
         int playersHealth = 2;
         int oppHealth = 2;
-        boolean currentRound = true;
-        boolean nextRound = false;
+        boolean currentRound;
+        boolean nextRound;
         Revolver rev = new Revolver();
-        rev.addRounds(false);
-        rev.addRounds(false);
-        rev.addRounds(true);
-        rev.addRounds(false);
-        rev.addRounds(false);
-        rev.addRounds(false);
+        rev.addRounds(new Bullet(false));
+        rev.addRounds(new Bullet(false));
+        rev.addRounds(new Bullet(true));
+        rev.addRounds(new Bullet(false));
+        rev.addRounds(new Bullet(false));
+        rev.addRounds(new Bullet(false));
+
         System.out.println(rev.writeOutRounds());
         rev.spinCylinder();
         System.out.println(rev.writeOutRounds());
@@ -65,7 +66,7 @@ public class Main {
             case "DEALER":
                 if(currentRound == true){
                     oppHealth -= 1;
-                    System.out.println("YOUR TURN");
+                    System.out.println("THE DEALER'S TURN");
                 } else if (currentRound == false) {
                     System.out.println("THE DEALER'S TURN");
                 }

@@ -1,11 +1,10 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Revolver extends Gun{
 
 
     @Override
-    public void addRounds(Boolean b) {
+    public void addRounds(Bullet b) {
         super.addRounds(b);
     }
 
@@ -19,7 +18,10 @@ public class Revolver extends Gun{
         return super.writeOutRounds();
     }
 
-    public void spinCylinder(){
-        Collections.shuffle(getAllRounds());
+    @Override
+    public ArrayList<Bullet> getAllRounds() {
+        return super.getAllRounds();
     }
+
+
 }
