@@ -10,8 +10,7 @@ public class Gun {
     }
 
     public ArrayList<Bullet> getAllRounds(){
-        ArrayList<Bullet> tempRounds = new ArrayList<>(rounds);
-        return tempRounds;
+        return new ArrayList<>(rounds);
     }
 
     public boolean getRound(int index){
@@ -26,7 +25,5 @@ public class Gun {
         return s.toString();
     }
 
-    public void spinCylinder(){
-        Collections.shuffle(rounds);
-    }
+
 }

@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -30,14 +29,14 @@ public class Main {
         // Two possible game modes - with a revolver or with a tactical shotgun
 
         System.out.println("Imagine interesting lore here");
-        int playersHealth = 2;
-        int oppHealth = 2;
+        int maxPlayersHealth = 3;
+        int maxOppHealth = 3;
         boolean currentRound;
         boolean nextRound;
         Revolver rev = new Revolver();
-        rev.addRounds(new Bullet(false));
-        rev.addRounds(new Bullet(false));
         rev.addRounds(new Bullet(true));
+        rev.addRounds(new Bullet(false));
+        rev.addRounds(new Bullet(false));
         rev.addRounds(new Bullet(false));
         rev.addRounds(new Bullet(false));
         rev.addRounds(new Bullet(false));
@@ -47,28 +46,71 @@ public class Main {
         System.out.println(rev.writeOutRounds());
         currentRound = rev.getRound(0);
         nextRound = rev.getRound(1);
-        System.out.println("Shoot YOURSELF or THE DEALER?");
+        System.out.println("[ROUND 1/3]");
+        System.out.println("Shoot (YOU)RSELF or the (OPP)onent?");
         System.out.println("Shooting yourself with a blank skips The Dealer's turn (max. 2 times)");
         String playersChoice;
         playersChoice = sc.next();
-        switch (playersChoice){
+        switch (playersChoice) {
             case "YOU":
-                if(currentRound == true){
-                    playersHealth -= 1;
-                    System.out.println("THE DEALER'S TURN");
+                System.out.println("You chose to shoot YOURSELF");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                if (currentRound == true) {
+                    System.out.println("The round is... LIVE");
+                    maxPlayersHealth -= 1;
+                    System.out.println("You lost 1 life. Careful, now...");
+                    if (maxPlayersHealth == 0) {
+                        System.out.println("YOU DIED. RESTART???");
+                        System.exit(0);
+                    }
+
                 } else if (currentRound == false) {
+                    System.out.println("The round is... BLANK");
+                    System.out.println("Shoot YOURSELF or THE DEALER?");
                     playersChoice = sc.next();
-                    System.out.println("THE DEALER'S TURN");
 
                 }
-                System.out.println(playersHealth);
                 break;
-            case "DEALER":
-                if(currentRound == true){
-                    oppHealth -= 1;
-                    System.out.println("THE DEALER'S TURN");
+            case "OPP":
+                if (currentRound == true) {
+                    maxOppHealth -= 1;
                 } else if (currentRound == false) {
-                    System.out.println("THE DEALER'S TURN");
+                }
+
+
+        }
+
+        System.out.println("[THE DEALER'S TURN]");
+        String oppChoice;
+        oppChoice = sc.next();
+        switch (oppChoice) {
+            case "YOU":
+                System.out.println("The opponent chose to shoot THEMSELVES");
+                if (nextRound == true) {
+                    System.out.println("The round is... LIVE");
+                    maxOppHealth -= 1;
+                    System.out.println("You lost 1 life. Careful, now...");
+                    if (maxOppHealth == 0) {
+                        System.out.println("YOU DIED. RESTART???");
+                        System.exit(0);
+                    }
+
+                } else if (nextRound == false) {
+                    System.out.println("The round is... BLANK");
+                    System.out.println("Shoot YOURSELF or THE DEALER?");
+                    playersChoice = sc.next();
+
+                }
+                System.out.println(maxPlayersHealth);
+                break;
+            case "OPP":
+                if (nextRound == true) {
+                    maxOppHealth -= 1;
+                } else if (nextRound == false) {
                 }
 
 
