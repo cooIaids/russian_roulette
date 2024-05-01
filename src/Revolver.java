@@ -5,7 +5,11 @@ public class Revolver extends Gun{
 
 
     public void spinCylinder(){
-        Collections.shuffle(getAllRounds());
+        Collections.shuffle(this.rounds);
+    }
+
+    public void reloadTheChamber(){
+
     }
 
 

@@ -3,18 +3,22 @@ import java.util.Collections;
 
 public class Gun {
 
-    private ArrayList<Bullet> rounds = new ArrayList<>();
+    protected ArrayList<Bullet> rounds = new ArrayList<>();
 
     public void addRounds(Bullet b){
         rounds.add(b);
     }
 
-    public ArrayList<Bullet> getAllRounds(){
-        return new ArrayList<>(rounds);
+    public void removeRound(Bullet b){
+        rounds.remove(b);
     }
 
-    public boolean getRound(int index){
-        return rounds.get(index).isLiveOrBlank();
+    public int size(){
+        return rounds.size();
+    }
+
+    public Bullet getRound(int index){
+        return rounds.get(index);
     }
 
     public String writeOutRounds(){
