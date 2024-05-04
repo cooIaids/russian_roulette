@@ -4,6 +4,15 @@ import java.util.Collections;
 public class Gun {
 
     protected ArrayList<Bullet> rounds = new ArrayList<>();
+    protected int damage = 1;
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 
     public void addRounds(Bullet b){
         rounds.add(b);
@@ -20,6 +29,8 @@ public class Gun {
     public Bullet getRound(int index){
         return rounds.get(index);
     }
+
+
 
     public String writeOutRounds(){
         StringBuilder s = new StringBuilder();

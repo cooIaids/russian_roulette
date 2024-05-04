@@ -31,100 +31,22 @@ public class Main {
         System.out.println("Imagine interesting lore here");
         int maxPlayersHealth = 3;
         int maxOppHealth = 3;
-        boolean currentRound;
-        boolean nextRound;
-        Revolver rev = new Revolver();
-        rev.addRounds(new Bullet(true));
-        rev.addRounds(new Bullet(false));
-        rev.addRounds(new Bullet(false));
-        rev.addRounds(new Bullet(false));
-        rev.addRounds(new Bullet(false));
-        rev.addRounds(new Bullet(false));
-
-        System.out.println(rev.writeOutRounds());
-        rev.spinCylinder();
-        System.out.println(rev.writeOutRounds());
-        currentRound = rev.getRound(0).isLiveOrBlank();
-        nextRound = rev.getRound(1).isLiveOrBlank();
-
-     /*   while (maxPlayersHealth != 0 || maxOppHealth != 0){
-            System.out.println("[YOUR TURN]");
-            System.out.println("Shoot (YOU)RSELF or the (OPP)onent?");
-            System.out.println("Shooting yourself with a blank skips the opponents turn (max. 2 times)");
-            String playersChoice;
-            playersChoice = sc.next();
-            switch (playersChoice) {
-                case "YOU":
-                    System.out.println("You chose to shoot YOURSELF");
-                    if (currentRound == true) {
-                        System.out.println("The round is... LIVE");
-                        maxPlayersHealth -= 1;
-                        System.out.println("You lost 1 life. Careful, now...");
-                        //insert method for reloading the 1 live bullet
-                        System.out.println("[THE OPPONENT'S TURN]");
-                        if (maxPlayersHealth == 0) {
-                            System.out.println("YOU DIED. RESTART???");
-                            System.exit(0);
-                        }
-
-                    } else if (currentRound == false) {
-                        System.out.println("The round is... BLANK");
-                        System.out.println("Shoot (YOU)RSELF or the (OPP)ONENT?");
-                        playersChoice = sc.next();
-                        currentRound = nextRound;
-                        currentRound = rev.getRound(2).isLiveOrBlank();
-                        nextRound = rev.getRound(3).isLiveOrBlank();
-
-                    }
-                    break;
-                case "OPP":
-                    if (currentRound == true) {
-                        maxOppHealth -= 1;
-                        //insert method for reloading the 1 live bullet
-                    } else if (currentRound == false) {
-                        System.out.println("The round is... BLANK");
-
-                    }
 
 
-            }
-            rev.spinCylinder();
-            System.out.println("[THE OPPONENT'S TURN]");
-            System.out.println("Shoot (YOU)RSELF or the (OPP)onent?");
-            String oppChoice;
-            oppChoice = sc.next();
-            switch (oppChoice) {
-                case "YOU":
-                    System.out.println("You chose to shoot YOURSELF");
-                    if (currentRound == true) {
-                        System.out.println("The round is... LIVE");
-                        maxOppHealth -= 1;
-                        System.out.println("You lost 1 life. Careful, now... ");
-                        //insert method for reloading the 1 live bullet
-                        if (maxOppHealth == 0) {
-                            System.out.println("YOU DIED. RESTART???");
-                            System.exit(0);
-                        }
+        Shotgun sg = new Shotgun();
+        sg.addRounds(new Bullet(true));
+        sg.addRounds(new Bullet(true));
+        GunCommand gc = new GunCommand();
+        gc.execute();
 
-                    } else if (currentRound == false) {
-                        System.out.println("The round is... BLANK");
-                        System.out.println("Shoot YOURSELF or the OPPONENT?");
-                        currentRound = nextRound;
-                        playersChoice = sc.next();
-                        currentRound = rev.getRound(2).isLiveOrBlank();
-                        nextRound = rev.getRound(3).isLiveOrBlank();
-
-                    }
-                    System.out.println(maxPlayersHealth);
-                    break;
-                case "OPP":
-                    if (currentRound == true) {
-                        maxOppHealth -= 1;
-                    } else if (currentRound == false) {
-                    }
+        Player p = new Player();
+        p.addItem(new Item(Item.TypeOfItem.POCKET_KNIFE));
+        ItemCommand ic = new ItemCommand();
+        ic.execute(); 
 
 
-            }*/
+
+
 
 
 
