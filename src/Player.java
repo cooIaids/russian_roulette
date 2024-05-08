@@ -7,7 +7,9 @@ public class Player {
     protected String name;
     protected int health;
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
-    private HashMap<String, Command> commands = new HashMap<>();
+
+    protected Command command;
+    protected HashMap<String, Command> commands = new HashMap<>();
     private Scanner sc = new Scanner(System.in);
 
 
@@ -15,6 +17,18 @@ public class Player {
         commands.put("use gun", new GunCommand());
         commands.put("help", new HelpCommand());
         commands.put("use item", new ItemCommand());
+    }
+
+    public void setCommand(String commandName) {
+        this.command = commands.get(commandName);
+    }
+
+    public void executeCommand(String s){
+        if(command != null){
+            command.execute(s);
+        }else {
+            System.out.println("Command not found");
+        }
     }
 
 
@@ -39,7 +53,7 @@ public class Player {
         this.health = health;
     }
 
-    public int size(){
+    public int itemsSize(){
         return playersItems.size();
     }
 
@@ -58,7 +72,7 @@ public class Player {
     public void useAnItem(int index){
         Item i = playersItems.get(index);
         switch (i.getType()){
-            case HANDCUFFS -> System.out.println();
+
         }
     }
 

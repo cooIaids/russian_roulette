@@ -28,21 +28,19 @@ public class Main {
 
         // Two possible game modes - with a revolver or with a tactical shotgun
 
-        System.out.println("Imagine interesting lore here");
-        int maxPlayersHealth = 3;
-        int maxOppHealth = 3;
+        Player p1 = new Player();
+        Player p2 = new Player();
 
 
-        Shotgun sg = new Shotgun();
-        sg.addRounds(new Bullet(true));
-        sg.addRounds(new Bullet(true));
-        GunCommand gc = new GunCommand();
-        gc.execute();
+        p1.initialisation();
+        p1.setCommand("use item");
+        System.out.println("Which item to use??");
+        String choice = "";
+        choice = sc.next();
+        p1.executeCommand(choice);
 
-        Player p = new Player();
-        p.addItem(new Item(Item.TypeOfItem.POCKET_KNIFE));
-        ItemCommand ic = new ItemCommand();
-        ic.execute(); 
+
+
 
 
 
