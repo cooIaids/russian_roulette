@@ -28,8 +28,9 @@ public class Main {
 
         // Two possible game modes - with a revolver (hard mode) or with a tactical shotgun (easy mode)
 
-        GameMode gm = new GameMode();
-        gm.revolverWithPlayers();
+        RevolverGameMode rgm = new RevolverGameMode();
+        rgm.revolverWithAI();
+
 
 
 
