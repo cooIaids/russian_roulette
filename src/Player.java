@@ -7,29 +7,9 @@ public class Player {
     protected String name;
     protected int maxHealth;
     protected int currentHealth;
+    protected Gun gun = new Gun();
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
 
-    protected Command command;
-    protected HashMap<String, Command> commands = new HashMap<>();
-
-
-    public void initialisation(){
-        commands.put("use gun", new GunCommand());
-        commands.put("help", new HelpCommand());
-        commands.put("use item", new ItemCommand());
-    }
-
-    public void setCommand(String commandName) {
-        this.command = commands.get(commandName);
-    }
-
-    public void executeCommand(String s){
-        if(command != null){
-            command.execute(s);
-        }else {
-            System.out.println("Command not found");
-        }
-    }
 
 
     public void addItem(Item i){
@@ -60,11 +40,6 @@ public class Player {
 
     public Item getItem(int index){
         return playersItems.get(index);
-    }
-
-    public Bullet method(Gun g){
-        return g.getRound(0);
-
     }
 
 

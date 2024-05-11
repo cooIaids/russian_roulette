@@ -4,13 +4,20 @@ import java.util.Collections;
 public class Revolver extends Gun{
 
 
-    public void spinCylinder(){
-        Collections.shuffle(this.rounds);
+    @Override
+    public void addRounds(Bullet b) {
+        if(rounds.size() < 6){
+            super.addRounds(b);
+        }else {
+            System.out.println("Can't add more rounds");
+        }
     }
 
-    public void reloadTheChamber(){
-
+    public void spinTheChamber(){
+        Collections.shuffle(rounds);
     }
+
+
 
 
 }

@@ -26,11 +26,11 @@ public class Main {
                 "on the other hand, this party has already filled you with insurmountable disappointment and you want to leave. " +
                 "The choice is yours");*/
 
-        // Two possible game modes - with a revolver or with a tactical shotgun
-        Player p = new Player();
-        Shotgun g = new Shotgun();
-        g.addRounds(new Bullet(true));
-        p.method(g);
+        // Two possible game modes - with a revolver (hard mode) or with a tactical shotgun (easy mode)
+
+        GameMode gm = new GameMode();
+        gm.revolverWithPlayers();
+
 
 
 

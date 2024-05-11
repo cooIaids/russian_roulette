@@ -1,7 +1,7 @@
 public class Item {
 
     enum TypeOfItem{
-         POCKET_KNIFE, BEER, MAGNIFYING_GLASS, CIGARETTES, ADRENALINE, FLIP_PHONE, EXPIRED_MEDICINE
+         POCKET_KNIFE, BEER, MAGNIFYING_GLASS, CIGARETTES, FLIP_PHONE, EXPIRED_MEDICINE
     }
 
     private TypeOfItem type;
@@ -13,6 +13,7 @@ public class Item {
     public TypeOfItem getType() {
         return type;
     }
+
 
     @Override
     public String toString() {

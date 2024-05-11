@@ -1,4 +1,4 @@
 public interface Command {
 
-     void execute(String choice);
+    boolean execute();
 }
