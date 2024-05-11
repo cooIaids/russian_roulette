@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Player {
 
     protected String name;
-    protected int health;
+    protected int maxHealth;
+    protected int currentHealth;
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
 
     protected Command command;
     protected HashMap<String, Command> commands = new HashMap<>();
-    private Scanner sc = new Scanner(System.in);
 
 
     public void initialisation(){
@@ -45,13 +45,6 @@ public class Player {
         return name;
     }
 
-    public int getHealth() {
-        return health;
-    }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
 
     public int itemsSize(){
         return playersItems.size();
@@ -69,15 +62,10 @@ public class Player {
         return playersItems.get(index);
     }
 
-    public void useAnItem(int index){
-        Item i = playersItems.get(index);
-        switch (i.getType()){
-
-        }
-    }
-
-
-    public void usingTheGun(String playersChoice){
+    public Bullet method(Gun g){
+        return g.getRound(0);
 
     }
+
+
 }

@@ -12,18 +12,12 @@ public class GunCommand implements Command {
         int oppHealth = 3;
         int yourHealth = 3;
 
-        p1.setHealth(yourHealth);
-        p2.setHealth(oppHealth);
         System.out.println("Player used the gun");
         if(s.equalsIgnoreCase("you")){
             System.out.println("Player chose to shoot themselves");
-            p1.setHealth(yourHealth-1);
-            System.out.println(p1.getHealth());
 
         }else if (s.equalsIgnoreCase("opp")){
             System.out.println("Player chose to shoot opponent");
-            p2.setHealth(oppHealth-1);
-            System.out.println(p2.getHealth());
 
         }
 

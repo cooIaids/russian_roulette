@@ -35,10 +35,16 @@ public class Gun {
     public String writeOutRounds(){
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < rounds.size(); i++){
-            s.append(rounds.get(i)).append(", ");
+            s.append(rounds.get(i));
         }
         return s.toString();
     }
 
-
+    @Override
+    public String toString() {
+        return "Gun{" +
+                "rounds=" + rounds +
+                ", damage=" + damage +
+                '}';
+    }
 }

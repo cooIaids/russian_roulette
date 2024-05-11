@@ -27,17 +27,10 @@ public class Main {
                 "The choice is yours");*/
 
         // Two possible game modes - with a revolver or with a tactical shotgun
-
-        Player p1 = new Player();
-        Player p2 = new Player();
-
-
-        p1.initialisation();
-        p1.setCommand("use item");
-        System.out.println("Which item to use??");
-        String choice = "";
-        choice = sc.next();
-        p1.executeCommand(choice);
+        Player p = new Player();
+        Shotgun g = new Shotgun();
+        g.addRounds(new Bullet(true));
+        p.method(g);
 
 
 
