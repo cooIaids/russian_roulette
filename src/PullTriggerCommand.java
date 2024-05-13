@@ -1,6 +1,6 @@
 public class PullTriggerCommand implements Command{
 
-    private Gun g;
+    private final Gun g;
 
     public PullTriggerCommand(Gun g) {
         this.g = g;
@@ -8,7 +8,7 @@ public class PullTriggerCommand implements Command{
 
     @Override
     public boolean execute() {
-        if(g.getRound(0).isLiveOrBlank() == true){
+        if(g.getRound(0).isLiveOrBlank()){
             System.out.println("The round is... LIVE");
             return true;
         }else {

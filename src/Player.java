@@ -30,6 +30,10 @@ public class Player {
         return playersItems.size();
     }
 
+    public void removeItem(int index){
+        playersItems.remove(index);
+    }
+
     public String writeOutItems(){
         StringBuilder s = new StringBuilder();
         for(int i = 0; i < playersItems.size(); i++){
