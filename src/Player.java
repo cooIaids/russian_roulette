@@ -1,13 +1,10 @@
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
 public class Player {
 
     protected String name;
     protected int maxHealth;
     protected int currentHealth;
-    protected Gun gun = new Gun();
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
 
 
