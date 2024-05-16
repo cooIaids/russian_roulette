@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class RevolverGameModePlayer extends GameMode {
 
-    public void revolverWithPlayers() {
+    public void startGame() {
         try {
             int prizeMoney = 0;
             ArrayList<Player> players = new ArrayList<>();
