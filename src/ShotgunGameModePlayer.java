@@ -14,12 +14,12 @@ public class ShotgunGameModePlayer extends GameMode {
             items.add(new Item(Item.TypeOfItem.EXPIRED_MEDICINE));
             items.add(new Item(Item.TypeOfItem.FLIP_PHONE));
 
-            System.out.println("You chose to risk your life with some other strangers from the club. " +
-                    "Buckshot roulette, a new, innovative version of Russian roulette.");
+            System.out.println(">You chose to risk your life with some other strangers from the club. " + "\n" +
+                    ">Buckshot roulette, a new, innovative version of Russian roulette.");
             System.out.println("[Press any button to continue]");
             sc.nextLine();
             Thread.sleep(500);
-            System.out.println("Do you wish to remove any items from tha game? (yes/no)");
+            System.out.println("Do you wish to remove any items from the game? (yes/no)");
             String playersChoiceToRemove = sc.next();
             Thread.sleep(500);
             if (playersChoiceToRemove.equalsIgnoreCase("yes")){
@@ -83,7 +83,9 @@ public class ShotgunGameModePlayer extends GameMode {
                         if (players.get(i).itemsSize() == 0) {
                             System.out.println("You don't have any items...");
                         } else {
-
+                            System.out.println("Choose which item you want to use: ");
+                            int indexOfItem = sc.nextInt();
+                            players.get(i).useAnItem(indexOfItem);
                             prizeMoney -= 500;
                         }
 
@@ -99,12 +101,13 @@ public class ShotgunGameModePlayer extends GameMode {
                         System.out.println(players.get(i).getName() + " pulls the trigger...");
                         if (executeCommand()) {
                             sg.removeRound(0);
-                            System.out.println(players.get(i).getName() + " lost" + sg.getDamage() + "life/lives.");
+                            System.out.println(players.get(i).getName() + " lost " + sg.getDamage() + " life/lives.");
                             players.get(i).setCurrentHealth(players.get(i).getMaxHealth() - sg.getDamage());
                             if(players.get(i).getCurrentHealth() == 0){
                                 players.remove(players.get(i));
                             }
                             break;
+
                         } else {
                             i--;
                         }

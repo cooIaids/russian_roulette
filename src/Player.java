@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Player {
 
@@ -6,6 +7,7 @@ public class Player {
     protected int maxHealth = 3;
     protected int currentHealth;
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
+    protected Random r = new Random();
 
 
 
@@ -65,6 +67,21 @@ public class Player {
         switch (i.getType()){
             case POCKET_KNIFE:
                 g.setDamage(g.getDamage()*2);
+                break;
+            case BEER:
+                g.removeRound(0);
+                break;
+            case MAGNIFYING_GLASS:
+                g.getRound(0).isLiveOrBlank();
+                break;
+            case CIGARETTES:
+                if(currentHealth != maxHealth){
+                    currentHealth+=currentHealth;
+                }
+                break;
+            case FLIP_PHONE:
+                int randomRound = r.nextInt(g.size());
+
         }
     }
 
