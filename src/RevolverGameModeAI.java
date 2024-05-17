@@ -28,6 +28,7 @@ public class RevolverGameModeAI extends GameMode {
             System.out.println("Let the dance of life and death begin...");
             Thread.sleep(500);
             System.out.println("Every player has (ONE) MAGNIFYING GLASS item. Use it wisely...");
+            boolean isOpponentsTurn = false;
             while (players.size() > 1) {
                 Revolver r = new Revolver();
                 r.addRounds(new Bullet(true));
@@ -38,8 +39,8 @@ public class RevolverGameModeAI extends GameMode {
                 r.addRounds(new Bullet(false));
 
 
-                boolean isOpponentsTurn = false;
-                if (!isOpponentsTurn) {
+
+                if (isOpponentsTurn) {
                     System.out.println("[" + p.getName() + "'s turn]");
                     System.out.println(p.getName() + " spins the chamber.");
                     r.spinTheChamber();
@@ -76,8 +77,7 @@ public class RevolverGameModeAI extends GameMode {
                 }
 
                 System.out.println();
-                isOpponentsTurn = true;
-                if (isOpponentsTurn == true) {
+                if (!isOpponentsTurn) {
                     System.out.println("[" + ai.getName() + "'s turn]");
                     System.out.println(ai.getName() + " spins the chamber");
                     r.spinTheChamber();
@@ -101,7 +101,6 @@ public class RevolverGameModeAI extends GameMode {
                     int playerOrDealer = random.nextInt(2);
                     if (playerOrDealer == 0) {
                         System.out.println("[The Dealer chose to let you pull the trigger]" + "\n");
-                        isOpponentsTurn = false;
 
                     }
                     if (playerOrDealer == 1 || !liveOrBlank) {
