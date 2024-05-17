@@ -18,8 +18,8 @@ public class Gun {
         rounds.add(b);
     }
 
-    public void removeRound(Bullet b){
-        rounds.remove(b);
+    public void removeRound(int index){
+        rounds.remove(index);
     }
 
     public int size(){

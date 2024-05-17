@@ -4,7 +4,7 @@ public class ShotgunGameModePlayer extends GameMode {
 
     public void startGame(){
         try {
-            int prizeMoney = 0;
+            int prizeMoney = 20000;
             ArrayList<Player> players = new ArrayList<>();
             ArrayList<Item> items = new ArrayList<>();
             items.add(new Item(Item.TypeOfItem.POCKET_KNIFE));
@@ -47,6 +47,7 @@ public class ShotgunGameModePlayer extends GameMode {
                 System.out.println("Choose a name for Player " + i + ":");
                 String nameChoice = sc.next();
                 players.get(i).setName(nameChoice);
+                players.get(i).setCurrentHealth(players.get(i).getMaxHealth());
                 players.get(i).addItem(items.get(randomItem));
 
 
@@ -59,27 +60,31 @@ public class ShotgunGameModePlayer extends GameMode {
 
             while (players.size() > 1) {
                 Shotgun sg = new Shotgun();
-                sg.addRounds(new Bullet(true));
-                sg.addRounds(new Bullet(false));
-                sg.addRounds(new Bullet(false));
-                sg.addRounds(new Bullet(true));
-                sg.addRounds(new Bullet(false));
-                sg.addRounds(new Bullet(false));
+                int randomLiveOrBlank;
+                for(int i = 0; i < 9;i++){
+                    randomLiveOrBlank = random.nextInt(2);
+                    if(randomLiveOrBlank == 0){
+                        sg.addRounds(new Bullet(true));
+                    }else {
+                        sg.addRounds(new Bullet(false));
+                    }
+                }
+
 
                 for (int i = 0; i < players.size(); i++) {
                     System.out.println("[" + players.get(i).getName() + "'s turn]");
                     Thread.sleep(500);
 
-                    System.out.println("Use ITEM (yes/no)???");
+                    System.out.println(players.get(i).getName() + "'s items: " + players.get(i).writeOutItems());
+                    System.out.println("Use an ITEM (yes/no)?");
                     String playersChoice = sc.next();
 
                     if (playersChoice.equalsIgnoreCase("yes")) {
                         if (players.get(i).itemsSize() == 0) {
-                            System.out.println("You already used your item...");
+                            System.out.println("You don't have any items...");
                         } else {
-                            System.out.println(sg.getRound(0).isLiveOrBlank());
-                            players.get(i).removeItem(0);
-                            prizeMoney -= 400;
+
+                            prizeMoney -= 500;
                         }
 
                     }
@@ -93,8 +98,12 @@ public class ShotgunGameModePlayer extends GameMode {
                         setCommand(new PullTriggerCommand(sg));
                         System.out.println(players.get(i).getName() + " pulls the trigger...");
                         if (executeCommand()) {
-                            System.out.println(players.get(i).getName() + " is eliminated.");
-                            players.remove(players.get(i));
+                            sg.removeRound(0);
+                            System.out.println(players.get(i).getName() + " lost" + sg.getDamage() + "life/lives.");
+                            players.get(i).setCurrentHealth(players.get(i).getMaxHealth() - sg.getDamage());
+                            if(players.get(i).getCurrentHealth() == 0){
+                                players.remove(players.get(i));
+                            }
                             break;
                         } else {
                             i--;
@@ -108,7 +117,7 @@ public class ShotgunGameModePlayer extends GameMode {
                 }
             }
             System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"
-                    + "You leave with $ " + prizeMoney);
+                    + "They leave with $ " + prizeMoney);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
