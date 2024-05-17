@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,6 +29,13 @@ public class Main {
                 "The choice is yours");*/
 
         // Two possible game modes - with a revolver (hard mode) or with a tactical shotgun (easy mode)
+
+       ShotgunGameModePlayer sgp = new ShotgunGameModePlayer();
+       sgp.startGame();
+
+
+
+
 
 
 

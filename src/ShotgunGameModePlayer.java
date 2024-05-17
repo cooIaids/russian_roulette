@@ -19,11 +19,27 @@ public class ShotgunGameModePlayer extends GameMode {
             System.out.println("[Press any button to continue]");
             sc.nextLine();
             Thread.sleep(500);
+            System.out.println("Do you wish to remove any items from tha game? (yes/no)");
+            String playersChoiceToRemove = sc.next();
+            Thread.sleep(500);
+            if (playersChoiceToRemove.equalsIgnoreCase("yes")){
+                System.out.println("Which item do you want to remove?");
+                String itemToRemove = sc.next();
+                switch (itemToRemove){
+                    case "knife": items.remove(new Item(Item.TypeOfItem.POCKET_KNIFE));
+                    case "cig": items.remove(new Item(Item.TypeOfItem.CIGARETTES));
+                    case "glass": items.remove(new Item(Item.TypeOfItem.MAGNIFYING_GLASS));
+                    case "beer": items.remove(new Item(Item.TypeOfItem.BEER));
+                    case "medicine": items.remove(new Item(Item.TypeOfItem.EXPIRED_MEDICINE));
+                    case "phone": items.remove(new Item(Item.TypeOfItem.FLIP_PHONE));
+                }
+            }
             System.out.println("Enter number of players: ");
             int numOfPlayers = sc.nextInt();
-            if (numOfPlayers < 2) {
-                System.out.println("Not enough players");
-                return;
+            while(numOfPlayers < 2){
+                 System.out.println("Not enough players");
+                 System.out.println("Enter number of players: ");
+                 numOfPlayers = sc.nextInt();
             }
             for (int i = 0; i < numOfPlayers; i++) {
                 int randomItem = random.nextInt(items.size());
@@ -42,18 +58,17 @@ public class ShotgunGameModePlayer extends GameMode {
             Thread.sleep(1000);
 
             while (players.size() > 1) {
-                Revolver r = new Revolver();
-                r.addRounds(new Bullet(true));
-                r.addRounds(new Bullet(false));
-                r.addRounds(new Bullet(false));
-                r.addRounds(new Bullet(false));
-                r.addRounds(new Bullet(false));
-                r.addRounds(new Bullet(false));
+                Shotgun sg = new Shotgun();
+                sg.addRounds(new Bullet(true));
+                sg.addRounds(new Bullet(false));
+                sg.addRounds(new Bullet(false));
+                sg.addRounds(new Bullet(true));
+                sg.addRounds(new Bullet(false));
+                sg.addRounds(new Bullet(false));
+
                 for (int i = 0; i < players.size(); i++) {
                     System.out.println("[" + players.get(i).getName() + "'s turn]");
                     Thread.sleep(500);
-                    System.out.println(players.get(i).getName() + " spins the chamber");
-                    r.spinTheChamber();
 
                     System.out.println("Use ITEM (yes/no)???");
                     String playersChoice = sc.next();
@@ -62,7 +77,7 @@ public class ShotgunGameModePlayer extends GameMode {
                         if (players.get(i).itemsSize() == 0) {
                             System.out.println("You already used your item...");
                         } else {
-                            System.out.println(r.getRound(0).isLiveOrBlank());
+                            System.out.println(sg.getRound(0).isLiveOrBlank());
                             players.get(i).removeItem(0);
                             prizeMoney -= 400;
                         }
@@ -75,7 +90,7 @@ public class ShotgunGameModePlayer extends GameMode {
                     }
                     if (triggerChoice.equalsIgnoreCase("you")) {
                         Thread.sleep(300);
-                        setCommand(new PullTriggerCommand(r));
+                        setCommand(new PullTriggerCommand(sg));
                         System.out.println(players.get(i).getName() + " pulls the trigger...");
                         if (executeCommand()) {
                             System.out.println(players.get(i).getName() + " is eliminated.");
@@ -87,7 +102,6 @@ public class ShotgunGameModePlayer extends GameMode {
 
 
                     }
-
 
                     prizeMoney += 1000;
 
