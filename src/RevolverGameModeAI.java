@@ -4,7 +4,7 @@ public class RevolverGameModeAI extends GameMode {
 
     public void startGame() {
         try {
-            int prizeMoney = 0;
+            int prizeMoney = 25000;
             ArrayList<Player> players = new ArrayList<>();
             System.out.println("You chose to play with The Dealer. The look he gives you is soul-wrenching." +
                     "The classic version of Russian Roulette, can't be beat.");
@@ -29,6 +29,7 @@ public class RevolverGameModeAI extends GameMode {
             Thread.sleep(500);
             System.out.println("Every player has (ONE) MAGNIFYING GLASS item. Use it wisely...");
             boolean isOpponentsTurn = false;
+            boolean liveOrBlank = false;
             while (players.size() > 1) {
                 Revolver r = new Revolver();
                 r.addRounds(new Bullet(true));
@@ -39,8 +40,7 @@ public class RevolverGameModeAI extends GameMode {
                 r.addRounds(new Bullet(false));
 
 
-
-                if (isOpponentsTurn) {
+                if (!isOpponentsTurn) {
                     System.out.println("[" + p.getName() + "'s turn]");
                     System.out.println(p.getName() + " spins the chamber.");
                     r.spinTheChamber();
@@ -51,6 +51,7 @@ public class RevolverGameModeAI extends GameMode {
                             System.out.println("You already used your item");
                         } else {
                             System.out.println(r.getRound(0).isLiveOrBlank());
+                            p.removeItem(0);
                             prizeMoney -= 500;
                         }
 
@@ -65,7 +66,7 @@ public class RevolverGameModeAI extends GameMode {
                         setCommand(new PullTriggerCommand(r));
                         System.out.println(p.getName() + " pulls the trigger...");
                         if (executeCommand()) {
-                            System.out.println(p.getName() + " is eliminated.");
+                            System.out.println("[" + p.getName() + " is eliminated.]");
                             players.remove(p);
                             break;
                         } else {
@@ -74,21 +75,18 @@ public class RevolverGameModeAI extends GameMode {
 
 
                     }
-                }
-
-                System.out.println();
-                if (!isOpponentsTurn) {
+                } else {
                     System.out.println("[" + ai.getName() + "'s turn]");
                     System.out.println(ai.getName() + " spins the chamber");
                     r.spinTheChamber();
                     int useItem = random.nextInt(2);
-                    boolean liveOrBlank = false;
+                    int playerOrDealer = random.nextInt(2);
 
                     if (useItem == 0) {
                         System.out.println("[The Dealer chose to use the item]" + "\n");
-                        if(ai.itemsSize() == 0){
-                            System.out.println("The Dealer: No items. What a terrible shame...");
-                        }else {
+                        if (ai.itemsSize() == 0) {
+                            System.out.println(ai.getName() + ": No items. What a terrible shame...");
+                        } else {
                             liveOrBlank = r.getRound(0).isLiveOrBlank();
                             ai.removeItem(0);
                             Thread.sleep(500);
@@ -98,31 +96,31 @@ public class RevolverGameModeAI extends GameMode {
 
 
                     }
-                    int playerOrDealer = random.nextInt(2);
                     if (playerOrDealer == 0) {
                         System.out.println("[The Dealer chose to let you pull the trigger]" + "\n");
+                        isOpponentsTurn = false;
 
-                    }
-                    if (playerOrDealer == 1 || !liveOrBlank) {
+                    }else {
                         Thread.sleep(300);
                         System.out.println("[The Dealer chose to pull the trigger on himself]" + "\n");
                         setCommand(new PullTriggerCommand(r));
                         System.out.println(ai.getName() + " pulls the trigger...");
                         if (executeCommand()) {
-                            System.out.println(ai.getName() + " is eliminated.");
+                            System.out.println("[" + ai.getName() + " is eliminated.]");
                             players.remove(ai);
                             break;
                         } else {
                             isOpponentsTurn = true;
-                        }
-                    }
 
+                        }
+
+                    }
 
                 }
 
-
                 prizeMoney += 1000;
             }
+            System.out.println();
             System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"
                     + "leaving with $ " + prizeMoney);
 

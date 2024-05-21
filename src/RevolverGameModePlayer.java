@@ -4,7 +4,7 @@ public class RevolverGameModePlayer extends GameMode {
 
     public void startGame() {
         try {
-            int prizeMoney = 0;
+            int prizeMoney = 25000;
             ArrayList<Player> players = new ArrayList<>();
             System.out.println("You chose to risk your life with some other strangers from the club. " +
                     "The classic version of Russian Roulette, can't be beat.");

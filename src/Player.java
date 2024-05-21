@@ -61,8 +61,7 @@ public class Player {
         return playersItems.get(index);
     }
 
-    public void useAnItem(int index){
-        Gun g = new Gun();
+    public void useAnItem(int index, Gun g){
         Item i = playersItems.get(index);
         switch (i.getType()){
             case POCKET_KNIFE:
@@ -76,11 +75,34 @@ public class Player {
                 break;
             case CIGARETTES:
                 if(currentHealth != maxHealth){
-                    currentHealth+=currentHealth;
+                    currentHealth+=1;
+                }else{
+                    System.out.println("Already at max heatlh.");
                 }
                 break;
             case FLIP_PHONE:
                 int randomRound = r.nextInt(g.size());
+                boolean randomLiveOrBlank = g.getRound(randomRound).isLiveOrBlank();
+                if(randomLiveOrBlank){
+                    System.out.println("..Round " + randomRound + "..." + " is live..." );
+                }else {
+                    System.out.println("..Round " + randomRound + "..." + " is blank..." );
+
+                }
+                break;
+            case EXPIRED_MEDICINE:
+                int randomHealth = r.nextInt(2);
+                if(randomHealth == 0){
+                    if(currentHealth == maxHealth){
+                        System.out.println("Already at max heatlh.");
+                    }else {
+                        currentHealth+=2;
+                    }
+                }else {
+                    currentHealth-=1;
+                }
+                break;
+
 
         }
     }

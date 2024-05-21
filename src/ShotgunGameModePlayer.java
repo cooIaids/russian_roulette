@@ -4,7 +4,7 @@ public class ShotgunGameModePlayer extends GameMode {
 
     public void startGame(){
         try {
-            int prizeMoney = 20000;
+            int prizeMoney = 25000;
             ArrayList<Player> players = new ArrayList<>();
             ArrayList<Item> items = new ArrayList<>();
             items.add(new Item(Item.TypeOfItem.POCKET_KNIFE));
@@ -61,17 +61,21 @@ public class ShotgunGameModePlayer extends GameMode {
             while (players.size() > 1) {
                 Shotgun sg = new Shotgun();
                 int randomLiveOrBlank;
-                for(int i = 0; i < 9;i++){
-                    randomLiveOrBlank = random.nextInt(2);
-                    if(randomLiveOrBlank == 0){
-                        sg.addRounds(new Bullet(true));
-                    }else {
-                        sg.addRounds(new Bullet(false));
+                if(sg.size() == 0){
+                    for(int i = 0; i < 9;i++){
+                        randomLiveOrBlank = random.nextInt(2);
+                        if(randomLiveOrBlank == 0){
+                            sg.addRounds(new Bullet(true));
+                        }else {
+                            sg.addRounds(new Bullet(false));
+                        }
                     }
                 }
 
 
+                System.out.println();
                 for (int i = 0; i < players.size(); i++) {
+                    System.out.println();
                     System.out.println("[" + players.get(i).getName() + "'s turn]");
                     Thread.sleep(500);
 
@@ -85,12 +89,13 @@ public class ShotgunGameModePlayer extends GameMode {
                         } else {
                             System.out.println("Choose which item you want to use: ");
                             int indexOfItem = sc.nextInt();
-                            players.get(i).useAnItem(indexOfItem);
+                            players.get(i).useAnItem(indexOfItem,sg);
                             prizeMoney -= 500;
                         }
 
                     }
-                    System.out.println("Who will be pulling the trigger???");
+                    System.out.println();
+                    System.out.println("[Who will be pulling the trigger???]");
                     String triggerChoice = sc.next();
                     if (triggerChoice.equalsIgnoreCase("opp")) {
                         continue;
@@ -102,14 +107,15 @@ public class ShotgunGameModePlayer extends GameMode {
                         if (executeCommand()) {
                             sg.removeRound(0);
                             System.out.println(players.get(i).getName() + " lost " + sg.getDamage() + " life/lives.");
-                            players.get(i).setCurrentHealth(players.get(i).getMaxHealth() - sg.getDamage());
+                            players.get(i).setCurrentHealth(players.get(i).getCurrentHealth() - sg.getDamage());
                             if(players.get(i).getCurrentHealth() == 0){
                                 players.remove(players.get(i));
+                                break;
                             }
-                            break;
-
                         } else {
+                            sg.removeRound(0);
                             i--;
+
                         }
 
 
