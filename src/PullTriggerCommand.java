@@ -1,4 +1,4 @@
-public class PullTriggerCommand implements Command{
+public class PullTriggerCommand implements Command {
 
     private final Gun g;
 

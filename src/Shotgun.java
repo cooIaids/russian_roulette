@@ -1,4 +1,4 @@
-public class Shotgun extends Gun{
+public class Shotgun extends Gun {
 
     @Override
     public int size() {

@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class AI extends Player{
+public class AI extends Player {
     private final Random r = new Random();
 
     @Override

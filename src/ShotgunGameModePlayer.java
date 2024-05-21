@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 public class ShotgunGameModePlayer extends GameMode {
@@ -59,6 +60,7 @@ public class ShotgunGameModePlayer extends GameMode {
             Thread.sleep(1000);
 
             while (players.size() > 1) {
+                int indexOfItem = 0;
                 Shotgun sg = new Shotgun();
                 int randomLiveOrBlank;
                 if(sg.size() == 0){
@@ -77,7 +79,6 @@ public class ShotgunGameModePlayer extends GameMode {
                 for (int i = 0; i < players.size(); i++) {
                     System.out.println();
                     System.out.println("[" + players.get(i).getName() + "'s turn]");
-                    Thread.sleep(500);
 
                     System.out.println(players.get(i).getName() + "'s items: " + players.get(i).writeOutItems());
                     System.out.println("Use an ITEM (yes/no)?");
@@ -88,7 +89,7 @@ public class ShotgunGameModePlayer extends GameMode {
                             System.out.println("You don't have any items...");
                         } else {
                             System.out.println("Choose which item you want to use: ");
-                            int indexOfItem = sc.nextInt();
+                            indexOfItem = sc.nextInt();
                             players.get(i).useAnItem(indexOfItem,sg);
                             prizeMoney -= 500;
                         }
@@ -101,7 +102,6 @@ public class ShotgunGameModePlayer extends GameMode {
                         continue;
                     }
                     if (triggerChoice.equalsIgnoreCase("you")) {
-                        Thread.sleep(300);
                         setCommand(new PullTriggerCommand(sg));
                         System.out.println(players.get(i).getName() + " pulls the trigger...");
                         if (executeCommand()) {

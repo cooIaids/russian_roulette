@@ -30,25 +30,12 @@ public class Main {
 
         // Two possible game modes - with a revolver (hard mode) or with a tactical shotgun (easy mode)
 
-       ShotgunGameModePlayer sgp = new ShotgunGameModePlayer();
-       sgp.startGame();
+     /*  ShotgunGameModePlayer sgp = new ShotgunGameModePlayer();
+       sgp.startGame();*/
 
      /*  RevolverGameModeAI rai = new RevolverGameModeAI();
         rai.startGame();*/
 
-     /*   Gun sg = new Gun();
-        sg.addRounds(new Bullet(true));
-        sg.addRounds(new Bullet(false));
-        sg.addRounds(new Bullet(false));
-        sg.addRounds(new Bullet(true));
-
-        Player p = new Player();
-        p.setCurrentHealth(3);
-        System.out.println(sg.getDamage());
-        p.addItem(new Item(Item.TypeOfItem.FLIP_PHONE));
-        p.useAnItem(0,sg);
-        System.out.println(sg.getDamage());
-        System.out.println(p.getCurrentHealth()); */
 
 
 
