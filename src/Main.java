@@ -36,6 +36,14 @@ public class Main {
      /*  RevolverGameModeAI rai = new RevolverGameModeAI();
         rai.startGame();*/
 
+        int random = 0;
+        random = r.nextInt(5);
+        System.out.println(random);
+        random = r.nextInt(5);
+        System.out.println(random);
+
+
+
 
 
 

@@ -62,6 +62,7 @@ public class ShotgunGameModePlayer extends GameMode {
             while (players.size() > 1) {
                 int indexOfItem = 0;
                 Shotgun sg = new Shotgun();
+                boolean usedTheKnife = false;
                 int randomLiveOrBlank;
                 if(sg.size() == 0){
                     for(int i = 0; i < 9;i++){
@@ -91,6 +92,9 @@ public class ShotgunGameModePlayer extends GameMode {
                             System.out.println("Choose which item you want to use: ");
                             indexOfItem = sc.nextInt();
                             players.get(i).useAnItem(indexOfItem,sg);
+                            if(players.get(i).getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
+                                usedTheKnife = true;
+                            }
                             prizeMoney -= 500;
                         }
 
@@ -119,6 +123,9 @@ public class ShotgunGameModePlayer extends GameMode {
                         }
 
 
+                    }
+                    if(usedTheKnife){
+                        sg.setDamage(1);
                     }
 
                     prizeMoney += 1000;

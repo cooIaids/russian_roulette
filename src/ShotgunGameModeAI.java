@@ -36,45 +36,36 @@ public class ShotgunGameModeAI extends GameMode {
                 }
             }
             Thread.sleep(500);
+            int randomItem = 0;
+
 
             Player p = new Player();
             System.out.println("Your name is: ");
             String nameChoice = sc.next();
             p.setName(nameChoice);
             p.setCurrentHealth(p.getMaxHealth());
-            p.addItem(new Item(Item.TypeOfItem.MAGNIFYING_GLASS));
+            randomItem = random.nextInt(items.size());
+            p.addItem(items.get(randomItem));
 
             AI ai = new AI();
             ai.setName("The Dealer");
             ai.setCurrentHealth(ai.getMaxHealth());
-            ai.addItem(new Item(Item.TypeOfItem.MAGNIFYING_GLASS));
+            randomItem = random.nextInt(items.size());
+            ai.addItem(items.get(randomItem));
 
             players.add(p);
             players.add(ai);
 
-            System.out.println("Enter number of players: ");
-            int numOfPlayers = sc.nextInt();
 
-
-
-            for (int i = 0; i < numOfPlayers; i++) {
-                int randomItem = random.nextInt(items.size());
-                players.add(new Player());
-                System.out.println("Choose a name for Player " + i + ":");
-                players.get(i).setName(nameChoice);
-                players.get(i).setCurrentHealth(players.get(i).getMaxHealth());
-                players.get(i).addItem(items.get(randomItem));
-
-
-            }
             Thread.sleep(500);
-            System.out.println("Game starts with " + numOfPlayers + " players. Let the dance of life and death begin...");
+            System.out.println("Let the dance of life and death begin...");
             Thread.sleep(500);
             System.out.println("Every player gets one item per round. Use them wisely...");
             Thread.sleep(1000);
-
+            boolean isOpponentsTurn = false;
             while (players.size() > 1) {
                 int indexOfItem = 0;
+                boolean usedTheKnife = false;
                 Shotgun sg = new Shotgun();
                 int randomLiveOrBlank;
                 if(sg.size() == 0){
@@ -88,24 +79,23 @@ public class ShotgunGameModeAI extends GameMode {
                     }
                 }
 
-
                 System.out.println();
-                for (int i = 0; i < players.size(); i++) {
-                    System.out.println();
-                    System.out.println("[" + players.get(i).getName() + "'s turn]");
+                if(!isOpponentsTurn){
+                    System.out.println("[" + p.getName() + "'s turn]");
                     Thread.sleep(500);
-
-                    System.out.println(players.get(i).getName() + "'s items: " + players.get(i).writeOutItems());
+                    System.out.println(p.getName() + "'s items: " + p.writeOutItems());
                     System.out.println("Use an ITEM (yes/no)?");
                     String playersChoice = sc.next();
-
                     if (playersChoice.equalsIgnoreCase("yes")) {
-                        if (players.get(i).itemsSize() == 0) {
+                        if (p.itemsSize() == 0) {
                             System.out.println("You don't have any items...");
                         } else {
                             System.out.println("Choose which item you want to use: ");
                             indexOfItem = sc.nextInt();
-                            players.get(i).useAnItem(indexOfItem,sg);
+                            p.useAnItem(indexOfItem,sg);
+                            if(ai.getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
+                                usedTheKnife = true;
+                            }
                             prizeMoney -= 500;
                         }
 
@@ -114,32 +104,80 @@ public class ShotgunGameModeAI extends GameMode {
                     System.out.println("[Who will be pulling the trigger???]");
                     String triggerChoice = sc.next();
                     if (triggerChoice.equalsIgnoreCase("opp")) {
-                        continue;
+                        isOpponentsTurn = true;
                     }
                     if (triggerChoice.equalsIgnoreCase("you")) {
-                        Thread.sleep(300);
                         setCommand(new PullTriggerCommand(sg));
-                        System.out.println(players.get(i).getName() + " pulls the trigger...");
+                        System.out.println(p.getName() + " pulls the trigger...");
                         if (executeCommand()) {
                             sg.removeRound(0);
-                            System.out.println(players.get(i).getName() + " lost " + sg.getDamage() + " life/lives.");
-                            players.get(i).setCurrentHealth(players.get(i).getCurrentHealth() - sg.getDamage());
-                            if(players.get(i).getCurrentHealth() == 0){
-                                players.remove(players.get(i));
+                            System.out.println(p.getName() + " lost " + sg.getDamage() + " life/lives.");
+                            p.setCurrentHealth(p.getCurrentHealth() - sg.getDamage());
+                            if(p.getCurrentHealth() == 0){
+                                players.remove(p);
                                 break;
                             }
                         } else {
                             sg.removeRound(0);
-                            i--;
+                            isOpponentsTurn = false;
 
                         }
 
 
                     }
+                }else{
+                    System.out.println("[" + ai.getName() + "'s turn]");
+                    Thread.sleep(500);
+                    System.out.println(ai.getName() + "'s items: " + ai.writeOutItems());
+                    int useItem = random.nextInt(2);
+                    int playerOrDealer = random.nextInt(2);
 
-                    prizeMoney += 1000;
+                    if (useItem == 0) {
+                        System.out.println("[" + ai.getName()  + " chose to use an item]" + "\n");
+                        if (ai.itemsSize() == 0) {
+                            System.out.println(ai.getName() + ": No items. What a terrible shame...");
+                        } else {
+                            int randomIndexOfItem = random.nextInt(ai.itemsSize());
+                            ai.useAnItem(randomIndexOfItem, sg);
+                            System.out.println("[" + ai.getName() + " used the" + items.get(randomIndexOfItem).toString()  + "]");
+                            if(ai.getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
+                                usedTheKnife = true;
+                            }
+                            prizeMoney -= 500;
+                        }
+
+
+                    }else{
+                        System.out.println("[" + ai.getName()  + " chose to not use an item]" + "\n");
+                    }
+                    if (playerOrDealer == 0) {
+                        System.out.println("["+ ai.getName() + " chose to let you pull the trigger]" + "\n");
+                        isOpponentsTurn = false;
+
+                    }else {
+                        Thread.sleep(300);
+                        System.out.println("["+ ai.getName() + " chose to pull the trigger on himself]" + "\n");
+                        setCommand(new PullTriggerCommand(sg));
+                        System.out.println(ai.getName() + " pulls the trigger...");
+                        if (executeCommand()) {
+                            System.out.println("[" + ai.getName() + " is eliminated.]");
+                            players.remove(ai);
+                            break;
+                        } else {
+
+                            isOpponentsTurn = true;
+
+                        }
+                        sg.removeRound(0);
+
+                    }
+                    if(usedTheKnife){
+                        sg.setDamage(1);
+                    }
+
 
                 }
+
             }
             System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"
                     + "They leave with $ " + prizeMoney);
