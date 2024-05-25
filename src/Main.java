@@ -30,11 +30,19 @@ public class Main {
 
         // Two possible game modes - with a revolver (hard mode) or with a tactical shotgun (easy mode)
 
-     /*  ShotgunGameModePlayer sgp = new ShotgunGameModePlayer();
-       sgp.startGame();*/
+     ShotgunGameModePlayer sgp = new ShotgunGameModePlayer();
+       sgp.startGame();
 
-      RevolverGameModeAI rai = new RevolverGameModeAI();
-        rai.startGame();
+      /*RevolverGameModeAI rai = new RevolverGameModeAI();
+        rai.startGame();*/
+       /*  boolean isAValidNumber;
+        do{
+            try {
+
+            }catch (){
+
+            }
+        }while (!isAValidNumber)*/
 
 
 

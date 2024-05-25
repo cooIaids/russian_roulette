@@ -4,9 +4,11 @@ import java.util.InputMismatchException;
 
 public class ShotgunGameModePlayer extends GameMode {
 
-    public void startGame(){
+    public void startGame() {
         boolean isAValidNumber;
         do {
+
+
             try {
                 int prizeMoney = 25000;
                 ArrayList<Player> players = new ArrayList<>();
@@ -135,16 +137,17 @@ public class ShotgunGameModePlayer extends GameMode {
 
                     }
                 }
+
                 System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"
                         + "They leave with $ " + prizeMoney);
 
                 isAValidNumber = true;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            } catch (InputMismatchException | IndexOutOfBoundsException e) {
+            } catch (InputMismatchException e) {
                 System.out.println("Incorrect input!");
                 isAValidNumber = false;
-                sc.next();
+                int num = sc.nextInt();
             }
         }while (!isAValidNumber);
 

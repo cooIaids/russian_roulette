@@ -3,11 +3,11 @@ import java.util.InputMismatchException;
 
 public class RevolverGameModeAI extends GameMode {
 
-    public void startGame() {
+    public void startGame(){
         boolean isAValidNumber;
         do {
             try {
-                int prizeMoney = 25000;
+                int prizeMoney = 20000;
                 ArrayList<Player> players = new ArrayList<>();
                 System.out.println("You chose to play with The Dealer. The look he gives you is soul-wrenching." +
                         "The classic version of Russian Roulette, can't be beat.");
@@ -138,7 +138,7 @@ public class RevolverGameModeAI extends GameMode {
                 }
                 System.out.println();
                 System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"
-                        + "leaving with $ " + prizeMoney);
+                        + "They leave with $ " + prizeMoney);
 
 
                 isAValidNumber = true;
