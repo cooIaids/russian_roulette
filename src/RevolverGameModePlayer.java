@@ -53,7 +53,11 @@ public class RevolverGameModePlayer extends GameMode {
                         if (players.get(i).itemsSize() == 0) {
                             System.out.println("You already used your item...");
                         } else {
-                            System.out.println(r.getRound(0).isLiveOrBlank());
+                            if (r.getRound(0).isLiveOrBlank()){
+                                System.out.println("The current round is.. LIVE");
+                            }else {
+                                System.out.println("The current round is.. BLANK");
+                            }
                             players.get(i).removeItem(0);
                             prizeMoney -= 400;
                         }
