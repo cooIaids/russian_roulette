@@ -20,8 +20,8 @@ public class ShotgunGameModePlayer extends GameMode {
                 items.add(new Item(Item.TypeOfItem.EXPIRED_MEDICINE));
                 items.add(new Item(Item.TypeOfItem.FLIP_PHONE));
 
-                System.out.println(">You chose to risk your life with some other strangers from the club. " + "\n" +
-                        ">Buckshot roulette, a new, innovative version of Russian roulette.");
+                System.out.println("> You chose to risk your life with some other strangers from the club. " + "\n" +
+                        "> Buckshot roulette, a new, innovative version of Russian roulette.");
                 System.out.println("[Press any button to continue]");
                 sc.nextLine();
                 Thread.sleep(500);
@@ -65,7 +65,7 @@ public class ShotgunGameModePlayer extends GameMode {
                 Thread.sleep(1000);
 
                 while (players.size() > 1) {
-                    int indexOfItem = 0;
+                    int indexOfItem;
                     Shotgun sg = new Shotgun();
                     boolean usedTheKnife = false;
                     int randomLiveOrBlank;
@@ -100,7 +100,7 @@ public class ShotgunGameModePlayer extends GameMode {
                                 if(players.get(i).getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
                                     usedTheKnife = true;
                                 }
-                                prizeMoney -= 500;
+                                prizeMoney += 500;
                             }
 
                         }
@@ -136,6 +136,7 @@ public class ShotgunGameModePlayer extends GameMode {
                         prizeMoney += 1000;
 
                     }
+
                 }
 
                 System.out.println("CONGRATULATIONS. The winner is " + players.get(0).getName() + "." + "\n"

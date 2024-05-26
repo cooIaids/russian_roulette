@@ -99,7 +99,7 @@ public class ShotgunGameModeAI extends GameMode {
                                 if(ai.getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
                                     usedTheKnife = true;
                                 }
-                                prizeMoney -= 500;
+                                prizeMoney += 500;
                             }
 
                         }
@@ -146,7 +146,7 @@ public class ShotgunGameModeAI extends GameMode {
                                 if(ai.getItem(indexOfItem).getType().equals(Item.TypeOfItem.POCKET_KNIFE)){
                                     usedTheKnife = true;
                                 }
-                                prizeMoney -= 500;
+                                prizeMoney += 500;
                             }
 
 
@@ -180,6 +180,8 @@ public class ShotgunGameModeAI extends GameMode {
 
 
                     }
+
+                    prizeMoney += 1000;
 
                 }
 

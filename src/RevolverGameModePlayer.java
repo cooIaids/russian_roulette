@@ -9,7 +9,7 @@ public class RevolverGameModePlayer extends GameMode {
         boolean isAValidNumber;
         do {
             try {
-                int prizeMoney = 20000;
+                int prizeMoney = 25000;
                 ArrayList<Player> players = new ArrayList<>();
                 System.out.println("You chose to risk your life with some other strangers from the club. " +
                         "The classic version of Russian Roulette, can't be beat.");
@@ -62,7 +62,7 @@ public class RevolverGameModePlayer extends GameMode {
                                     System.out.println("The current round is.. BLANK");
                                 }
                                 players.get(i).removeItem(0);
-                                prizeMoney -= 400;
+                                prizeMoney += 500;
                             }
 
                         }

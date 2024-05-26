@@ -7,7 +7,7 @@ public class RevolverGameModeAI extends GameMode {
         boolean isAValidNumber;
         do {
             try {
-                int prizeMoney = 20000;
+                int prizeMoney = 25000;
                 ArrayList<Player> players = new ArrayList<>();
                 System.out.println("You chose to play with The Dealer. The look he gives you is soul-wrenching." +
                         "The classic version of Russian Roulette, can't be beat.");
@@ -43,8 +43,8 @@ public class RevolverGameModeAI extends GameMode {
                     r.addRounds(new Bullet(false));
 
 
+                    System.out.println("-----------------------------");
                     if (!isOpponentsTurn) {
-                        System.out.println("-----------------------------");
                         System.out.println("[" + p.getName() + "'s turn]");
                         System.out.println(p.getName() + " spins the chamber.");
                         r.spinTheChamber();
@@ -87,7 +87,6 @@ public class RevolverGameModeAI extends GameMode {
                         }
 
                     } else {
-                        System.out.println("-----------------------------");
                         System.out.println("[" + ai.getName() + "'s turn]");
                         System.out.println(ai.getName() + " spins the chamber");
                         r.spinTheChamber();
