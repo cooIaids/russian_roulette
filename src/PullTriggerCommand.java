@@ -6,6 +6,10 @@ public class PullTriggerCommand implements Command {
         this.g = g;
     }
 
+    /**
+     * Returns the corresponding boolean value for the current bullet round.
+     * @return the value of the bullet (true = live & false = blank)
+     */
     @Override
     public boolean execute() {
         if(g.getRound(0).isLiveOrBlank()){

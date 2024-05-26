@@ -4,6 +4,9 @@ import java.util.InputMismatchException;
 
 public class ShotgunGameModeAI extends GameMode {
 
+    /**
+     * Starts game mode where the Player plays against AI with Shotgun.
+     */
     public void startGame(){
         boolean isAValidNumber;
         do{
@@ -28,6 +31,15 @@ public class ShotgunGameModeAI extends GameMode {
                 Thread.sleep(500);
                 if (playersChoiceToRemove.equalsIgnoreCase("yes")){
                     System.out.println("Which item do you want to remove?");
+                    System.out.println("""
+                            List of available items:\s
+                            'knife' - POCKET_KNIFE
+                            'cig' - CIGARETTES
+                            'glass' - MAGNIFYING_GLASS
+                            'beer' - BEER
+                            'medicine' - EXPIRED_MEDICINE
+                            'phone' - FLIP_PHONE
+                            """);
                     String itemToRemove = sc.next();
                     switch (itemToRemove){
                         case "knife": items.remove(new Item(Item.TypeOfItem.POCKET_KNIFE));
@@ -39,7 +51,7 @@ public class ShotgunGameModeAI extends GameMode {
                     }
                 }
                 Thread.sleep(500);
-                int randomItem = 0;
+                int randomItem;
 
 
                 Player p = new Player();
@@ -83,6 +95,7 @@ public class ShotgunGameModeAI extends GameMode {
                     }
 
                     System.out.println();
+                    System.out.println("-----------------------------");
                     if(!isOpponentsTurn){
                         System.out.println("[" + p.getName() + "'s turn]");
                         Thread.sleep(500);
@@ -104,7 +117,7 @@ public class ShotgunGameModeAI extends GameMode {
 
                         }
                         System.out.println();
-                        System.out.println("[Who will be pulling the trigger???]");
+                        System.out.println("[Who will be pulling the trigger? (you/opp)] ");
                         String triggerChoice = sc.next();
                         if (triggerChoice.equalsIgnoreCase("opp")) {
                             isOpponentsTurn = true;
@@ -125,7 +138,7 @@ public class ShotgunGameModeAI extends GameMode {
                                 isOpponentsTurn = false;
 
                             }
-
+                            System.out.println("-----------------------------");
 
                         }
                     }else{
@@ -163,21 +176,22 @@ public class ShotgunGameModeAI extends GameMode {
                             setCommand(new PullTriggerCommand(sg));
                             System.out.println(ai.getName() + " pulls the trigger...");
                             if (executeCommand()) {
+                                sg.removeRound(0);
                                 System.out.println("[" + ai.getName() + " is eliminated.]");
+                                System.out.println("-----------------------------");
                                 players.remove(ai);
                                 break;
                             } else {
-
+                                sg.removeRound(0);
                                 isOpponentsTurn = true;
 
                             }
-                            sg.removeRound(0);
 
                         }
                         if(usedTheKnife){
                             sg.setDamage(1);
                         }
-
+                        System.out.println("-----------------------------");
 
                     }
 

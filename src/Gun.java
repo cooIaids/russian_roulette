@@ -13,6 +13,7 @@ public class Gun {
         this.damage = damage;
     }
 
+
     public void addRounds(Bullet b){
         rounds.add(b);
     }
@@ -25,10 +26,10 @@ public class Gun {
         return rounds.size();
     }
 
+
     public Bullet getRound(int index){
         return rounds.get(index);
     }
-
 
 
     public String writeOutRounds(){

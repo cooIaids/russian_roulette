@@ -28,9 +28,6 @@ public class Player {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
-        this.maxHealth = maxHealth;
-    }
 
     public int getCurrentHealth() {
         return currentHealth;
@@ -61,6 +58,11 @@ public class Player {
         return playersItems.get(index);
     }
 
+    /**
+     * Uses an item in the Player's inventory
+     * @param index
+     * @param g
+     */
     public void useAnItem(int index, Gun g){
         Item i = playersItems.get(index);
         switch (i.getType()){

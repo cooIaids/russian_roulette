@@ -5,6 +5,9 @@ public class GameStart {
 
     private final Scanner sc = new Scanner(System.in);
 
+    /**
+     * Starts the entire game (including the game story). Allows the user to choose between 4 different game modes.
+     */
     public void playersChoiceForGameMode() {
         boolean isAValidNumber;
         do {

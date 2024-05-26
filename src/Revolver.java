@@ -12,6 +12,9 @@ public class Revolver extends Gun {
         }
     }
 
+    /**
+     * Simulates the spinning of the chamber (shuffles the list).
+     */
     public void spinTheChamber(){
         Collections.shuffle(rounds);
     }

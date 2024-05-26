@@ -5,14 +5,17 @@ import java.util.InputMismatchException;
 
 public class RevolverGameModePlayer extends GameMode {
 
+    /**
+     * Starts game mode where the Player plays against other players with Revolver.
+     */
     public void startGame(){
         boolean isAValidNumber;
         do {
             try {
                 int prizeMoney = 25000;
                 ArrayList<Player> players = new ArrayList<>();
-                System.out.println("You chose to risk your life with some other strangers from the club. " +
-                        "The classic version of Russian Roulette, can't be beat.");
+                System.out.println("> You chose to risk your life with some other strangers from the club. " + "\n" +
+                        "> The classic version of Russian Roulette, can't be beat.");
                 System.out.println("[Press any button to continue]");
                 sc.nextLine();
                 Thread.sleep(500);
@@ -44,6 +47,7 @@ public class RevolverGameModePlayer extends GameMode {
                     r.addRounds(new Bullet(false));
                     r.addRounds(new Bullet(false));
                     for (int i = 0; i < players.size(); i++) {
+                        System.out.println("-----------------------------");
                         System.out.println("[" + players.get(i).getName() + "'s turn]");
                         Thread.sleep(500);
                         System.out.println(players.get(i).getName() + " spins the chamber");
@@ -66,7 +70,7 @@ public class RevolverGameModePlayer extends GameMode {
                             }
 
                         }
-                        System.out.println("Who will be pulling the trigger???");
+                        System.out.println("[Who will be pulling the trigger? (you/opp)] ");
                         String triggerChoice = sc.next();
                         if (triggerChoice.equalsIgnoreCase("opp")) {
                             continue;
@@ -77,6 +81,7 @@ public class RevolverGameModePlayer extends GameMode {
                             System.out.println(players.get(i).getName() + " pulls the trigger...");
                             if (executeCommand()) {
                                 System.out.println(players.get(i).getName() + " is eliminated.");
+                                System.out.println("-----------------------------");
                                 players.remove(players.get(i));
                                 break;
                             } else {
@@ -85,6 +90,8 @@ public class RevolverGameModePlayer extends GameMode {
 
 
                         }
+                        System.out.println("-----------------------------");
+
 
 
                         prizeMoney += 1000;

@@ -3,14 +3,18 @@ import java.util.InputMismatchException;
 
 public class RevolverGameModeAI extends GameMode {
 
-    public void startGame(){
+    /**
+     * Starts game mode where the Player plays against AI with Revolver.
+     */
+    public void startGame() {
         boolean isAValidNumber;
         do {
             try {
                 int prizeMoney = 25000;
                 ArrayList<Player> players = new ArrayList<>();
-                System.out.println("You chose to play with The Dealer. The look he gives you is soul-wrenching." +
-                        "The classic version of Russian Roulette, can't be beat.");
+                System.out.println("> You chose to play with The Dealer. The look he gives you is soul-wrenching."
+                        + "\n" +
+                        "> The classic version of Russian Roulette, can't be beat.");
                 System.out.println("[Press any button to continue]");
                 sc.nextLine();
                 Thread.sleep(500);
@@ -54,17 +58,17 @@ public class RevolverGameModeAI extends GameMode {
                             if (p.itemsSize() == 0) {
                                 System.out.println("You already used your item");
                             } else {
-                                if (r.getRound(0).isLiveOrBlank()){
+                                if (r.getRound(0).isLiveOrBlank()) {
                                     System.out.println("The current round is.. LIVE");
-                                }else {
+                                } else {
                                     System.out.println("The current round is.. BLANK");
                                 }
                                 p.removeItem(0);
-                                prizeMoney -= 500;
+                                prizeMoney += 500;
                             }
 
                         }
-                        System.out.println("Who will be pulling the trigger? (you/opp)");
+                        System.out.println("[Who will be pulling the trigger? (you/opp)] ");
                         String triggerChoice = sc.next();
                         if (triggerChoice.equalsIgnoreCase("opp")) {
                             isOpponentsTurn = true;
@@ -94,7 +98,7 @@ public class RevolverGameModeAI extends GameMode {
                         int playerOrDealer = random.nextInt(2);
                         Thread.sleep(500);
                         if (useItem == 0) {
-                            System.out.println("[The Dealer chose to use the item]" + "\n");
+                            System.out.println("[" + ai.getName() + " chose to use the item]" + "\n");
                             Thread.sleep(500);
                             if (ai.itemsSize() == 0) {
                                 System.out.println(ai.getName() + ": No items. What a terrible shame...");
@@ -103,18 +107,20 @@ public class RevolverGameModeAI extends GameMode {
                                 ai.removeItem(0);
                                 Thread.sleep(500);
                                 System.out.println(ai.getName() + ": Very interesting...");
-                                prizeMoney -= 500;
+                                prizeMoney += 500;
                             }
 
 
                         }
                         Thread.sleep(500);
                         if (playerOrDealer == 0) {
-                            System.out.println("[The Dealer chose to let you pull the trigger]" + "\n");
+                            System.out.println("[" + ai.getName() + " chose to let you pull the trigger]"+ "\n");
+
                             isOpponentsTurn = false;
 
-                        }else {
-                            System.out.println("[The Dealer chose to pull the trigger on himself]" + "\n");
+                        } else {
+                            System.out.println("[" + ai.getName() + " chose to pull the trigger on himself]" + "\n");
+
                             setCommand(new PullTriggerCommand(r));
                             System.out.println(ai.getName() + " pulls the trigger...");
                             Thread.sleep(500);
@@ -143,13 +149,13 @@ public class RevolverGameModeAI extends GameMode {
                 isAValidNumber = true;
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            } catch (InputMismatchException | IndexOutOfBoundsException e){
+            } catch (InputMismatchException | IndexOutOfBoundsException e) {
                 System.out.println("Incorrect input!");
                 isAValidNumber = false;
                 sc.next();
 
             }
-        }while(!isAValidNumber);
+        } while (!isAValidNumber);
 
     }
 

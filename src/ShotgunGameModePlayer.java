@@ -4,6 +4,9 @@ import java.util.InputMismatchException;
 
 public class ShotgunGameModePlayer extends GameMode {
 
+    /**
+     * Starts game mode where the Player plays against other players with Shotgun.
+     */
     public void startGame() {
         boolean isAValidNumber;
         do {
@@ -30,6 +33,15 @@ public class ShotgunGameModePlayer extends GameMode {
                 Thread.sleep(500);
                 if (playersChoiceToRemove.equalsIgnoreCase("yes")){
                     System.out.println("Which item do you want to remove?");
+                    System.out.println("""
+                            List of available items:\s
+                            'knife' - POCKET_KNIFE
+                            'cig' - CIGARETTES
+                            'glass' - MAGNIFYING_GLASS
+                            'beer' - BEER
+                            'medicine' - EXPIRED_MEDICINE
+                            'phone' - FLIP_PHONE
+                            """);
                     String itemToRemove = sc.next();
                     switch (itemToRemove){
                         case "knife": items.remove(new Item(Item.TypeOfItem.POCKET_KNIFE));
@@ -83,7 +95,7 @@ public class ShotgunGameModePlayer extends GameMode {
 
                     System.out.println();
                     for (int i = 0; i < players.size(); i++) {
-                        System.out.println();
+                        System.out.println("-----------------------------");
                         System.out.println("[" + players.get(i).getName() + "'s turn]");
 
                         System.out.println(players.get(i).getName() + "'s items: " + players.get(i).writeOutItems());
@@ -105,7 +117,7 @@ public class ShotgunGameModePlayer extends GameMode {
 
                         }
                         System.out.println();
-                        System.out.println("[Who will be pulling the trigger???]");
+                        System.out.println("[Who will be pulling the trigger? (you/opp)] ");
                         String triggerChoice = sc.next();
                         if (triggerChoice.equalsIgnoreCase("opp")) {
                             continue;
@@ -118,6 +130,8 @@ public class ShotgunGameModePlayer extends GameMode {
                                 System.out.println(players.get(i).getName() + " lost " + sg.getDamage() + " life/lives.");
                                 players.get(i).setCurrentHealth(players.get(i).getCurrentHealth() - sg.getDamage());
                                 if(players.get(i).getCurrentHealth() == 0){
+                                    System.out.println(players.get(i).getName() + " is eliminated.");
+                                    System.out.println("-----------------------------");
                                     players.remove(players.get(i));
                                     break;
                                 }
@@ -129,6 +143,7 @@ public class ShotgunGameModePlayer extends GameMode {
 
 
                         }
+                        System.out.println("-----------------------------");
                         if(usedTheKnife){
                             sg.setDamage(1);
                         }
