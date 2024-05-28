@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Player {
 
@@ -8,6 +9,8 @@ public class Player {
     protected int currentHealth;
     protected ArrayList<Item> playersItems = new ArrayList<>(8);
     protected Random r = new Random();
+
+    private Scanner sc = new Scanner(System.in);
 
 
 
