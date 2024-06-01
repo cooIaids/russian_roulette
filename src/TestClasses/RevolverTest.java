@@ -9,6 +9,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RevolverTest {
 
+    /**
+    * Tests the method addRounds()
+    */
+
     @Test
     void addRounds() {
         Revolver revolver = new Revolver();
