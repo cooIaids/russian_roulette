@@ -80,7 +80,7 @@ public class ShotgunGameModeAI extends GameMode {
                 Thread.sleep(500);
                 System.out.println("Let the dance of life and death begin...");
                 Thread.sleep(500);
-                System.out.println("Every player gets one item per round. Use them wisely...");
+                System.out.println("Every player gets one item. Use it wisely...");
                 Thread.sleep(1000);
                 boolean isOpponentsTurn = false;
                 while (players.size() > 1) {
