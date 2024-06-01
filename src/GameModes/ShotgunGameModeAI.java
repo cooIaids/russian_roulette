@@ -1,3 +1,8 @@
+package GameModes;
+
+import EntitiesAndItems.*;
+import Guns.*;
+import Command.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -5,7 +10,7 @@ import java.util.InputMismatchException;
 public class ShotgunGameModeAI extends GameMode {
 
     /**
-     * Starts game mode where the Player plays against AI with Shotgun.
+     * Starts game mode where the EntitiesAndItems.Player plays against EntitiesAndItems.AI with Guns.Shotgun.
      */
     public void startGame(){
         boolean isAValidNumber;

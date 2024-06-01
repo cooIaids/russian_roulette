@@ -1,3 +1,7 @@
+package EntitiesAndItems;
+
+import Guns.*;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -62,7 +66,7 @@ public class Player {
     }
 
     /**
-     * Uses an item in the Player's inventory
+     * Uses an item in the EntitiesAndItems.Player's inventory
      * @param index
      * @param g
      */

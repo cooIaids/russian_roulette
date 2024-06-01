@@ -1,3 +1,7 @@
+package EntitiesAndItems;
+
+import Guns.*;
+
 import java.util.Random;
 
 public class AI extends Player {

@@ -1,3 +1,8 @@
+package TestClasses;
+
+import GameModes.GameMode;
+import Guns.*;
+import Command.*;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -6,6 +11,10 @@ import java.io.PrintStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PullTriggerCommandTest {
+
+    /**
+     * Tests the method execute()
+     */
 
     @Test
     void execute() {

@@ -1,3 +1,7 @@
+package Command;
+
+import Guns.Gun;
+
 public class PullTriggerCommand implements Command {
 
     private final Gun g;

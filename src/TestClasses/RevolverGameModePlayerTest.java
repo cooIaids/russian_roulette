@@ -1,3 +1,6 @@
+package TestClasses;
+
+import GameModes.RevolverGameModePlayer;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -9,6 +12,10 @@ import java.util.Scanner;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RevolverGameModePlayerTest {
+
+    /**
+     * Tests the method startGame()
+     */
 
     @Test
     void startGame() {

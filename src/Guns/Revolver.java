@@ -1,3 +1,6 @@
+package Guns;
+
+
 import java.util.Collections;
 
 public class Revolver extends Gun {

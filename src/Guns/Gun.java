@@ -1,3 +1,7 @@
+package Guns;
+
+import Guns.Bullet;
+
 import java.util.ArrayList;
 
 public class Gun {
@@ -42,7 +46,7 @@ public class Gun {
 
     @Override
     public String toString() {
-        return "Gun{" +
+        return "Guns.Gun{" +
                 "rounds=" + rounds +
                 ", damage=" + damage +
                 '}';

@@ -1,8 +1,16 @@
+package TestClasses;
+
+import EntitiesAndItems.*;
+import Guns.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
+
+    /**
+     * Tests the method useAnItem()
+     */
 
     @Test
     void useAnItem() {

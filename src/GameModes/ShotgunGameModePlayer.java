@@ -1,3 +1,8 @@
+package GameModes;
+
+import EntitiesAndItems.*;
+import Guns.*;
+import Command.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -5,7 +10,7 @@ import java.util.InputMismatchException;
 public class ShotgunGameModePlayer extends GameMode {
 
     /**
-     * Starts game mode where the Player plays against other players with Shotgun.
+     * Starts game mode where the EntitiesAndItems.Player plays against other players with Guns.Shotgun.
      */
     public void startGame() {
         boolean isAValidNumber;
@@ -62,7 +67,7 @@ public class ShotgunGameModePlayer extends GameMode {
                 for (int i = 0; i < numOfPlayers; i++) {
                     int randomItem = random.nextInt(items.size());
                     players.add(new Player());
-                    System.out.println("Choose a name for Player " + i + ":");
+                    System.out.println("Choose a name for EntitiesAndItems.Player " + i + ":");
                     String nameChoice = sc.next();
                     players.get(i).setName(nameChoice);
                     players.get(i).setCurrentHealth(players.get(i).getMaxHealth());

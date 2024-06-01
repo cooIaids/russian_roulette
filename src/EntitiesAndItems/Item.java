@@ -1,10 +1,12 @@
+package EntitiesAndItems;
+
 public class Item {
 
-    enum TypeOfItem{
+    public enum TypeOfItem{
          POCKET_KNIFE, BEER, MAGNIFYING_GLASS, CIGARETTES, FLIP_PHONE, EXPIRED_MEDICINE
     }
 
-    private TypeOfItem type;
+    private final TypeOfItem type;
 
     public Item(TypeOfItem type) {
         this.type = type;

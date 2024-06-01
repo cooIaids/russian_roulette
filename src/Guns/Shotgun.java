@@ -1,3 +1,7 @@
+package Guns;
+
+
+
 public class Shotgun extends Gun {
 
     @Override

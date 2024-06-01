@@ -1,3 +1,8 @@
+import GameModes.RevolverGameModeAI;
+import GameModes.RevolverGameModePlayer;
+import GameModes.ShotgunGameModeAI;
+import GameModes.ShotgunGameModePlayer;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 

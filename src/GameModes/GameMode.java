@@ -1,3 +1,7 @@
+package GameModes;
+
+
+import Command.*;
 import java.util.Random;
 import java.util.Scanner;
 

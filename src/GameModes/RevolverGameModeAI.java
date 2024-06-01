@@ -1,10 +1,16 @@
+package GameModes;
+
+import EntitiesAndItems.*;
+import Guns.*;
+import Command.*;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
 public class RevolverGameModeAI extends GameMode {
 
     /**
-     * Starts game mode where the Player plays against AI with Revolver.
+     * Starts game mode where the EntitiesAndItems.Player plays against EntitiesAndItems.AI with Guns.Revolver.
      */
     public void startGame() {
         boolean isAValidNumber;

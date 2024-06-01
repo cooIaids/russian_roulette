@@ -1,6 +1,8 @@
+package Guns;
+
 public class Bullet {
 
-    private boolean liveOrBlank;
+    private final boolean liveOrBlank;
 
     public Bullet(boolean liveOrBlank) {
         this.liveOrBlank = liveOrBlank;
@@ -10,9 +12,6 @@ public class Bullet {
         return liveOrBlank;
     }
 
-    public void setLiveOrBlank(boolean liveOrBlank) {
-        this.liveOrBlank = liveOrBlank;
-    }
 
     @Override
     public String toString() {

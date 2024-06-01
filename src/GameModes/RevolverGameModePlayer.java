@@ -1,4 +1,8 @@
+package GameModes;
 
+import EntitiesAndItems.*;
+import Guns.*;
+import Command.*;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -6,7 +10,7 @@ import java.util.InputMismatchException;
 public class RevolverGameModePlayer extends GameMode {
 
     /**
-     * Starts game mode where the Player plays against other players with Revolver.
+     * Starts game mode where the EntitiesAndItems.Player plays against other players with Guns.Revolver.
      */
     public void startGame(){
         boolean isAValidNumber;
@@ -27,7 +31,7 @@ public class RevolverGameModePlayer extends GameMode {
                 }
                 for (int i = 0; i < numOfPlayers; i++) {
                     players.add(new Player());
-                    System.out.println("Choose a name for Player " + i + ":");
+                    System.out.println("Choose a name for EntitiesAndItems.Player " + i + ":");
                     String nameChoice = sc.next();
                     players.get(i).setName(nameChoice);
                     players.get(i).addItem(new Item(Item.TypeOfItem.MAGNIFYING_GLASS));
