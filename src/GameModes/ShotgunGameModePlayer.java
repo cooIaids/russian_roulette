@@ -78,7 +78,7 @@ public class ShotgunGameModePlayer extends GameMode {
                 Thread.sleep(500);
                 System.out.println("Game starts with " + numOfPlayers + " players. Let the dance of life and death begin...");
                 Thread.sleep(500);
-                System.out.println("Every player gets one item per round. Use them wisely...");
+                System.out.println("Every player gets one item. Use it wisely...");
                 Thread.sleep(1000);
 
                 while (players.size() > 1) {
